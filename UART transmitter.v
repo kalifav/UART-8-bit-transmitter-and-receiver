@@ -10,7 +10,7 @@ module UART_TX
  );
  
  reg [15:0] clk_counter      = 0;
- reg [10:0] shift_reg        = 0; //The whole data package for transmission
+ reg [10:0] shift_reg        = 11'b00000000001; //The whole data package for transmission
  reg        reg_active       = 0; 
  reg        reg_parity       = 0; //Even parity biy calculated
  reg        state            = 0;
@@ -29,54 +29,55 @@ module UART_TX
     if (reset)
      begin
       clk_counter    <= 0;
-	  reg_parity     <= 0;
+      reg_parity     <= 0;
       shift_reg      <= 11'b00000000001; //We want the LSB bit to be '1' for no transmission
       reg_active     <= 0;
       state          <= IDLE;
      end
 	
-	else
-	 begin
-	  case(state)
+    else
+     begin
+	     
+      case(state)
 	  
 	    IDLE: 
 		 begin
 		   clk_counter  <= 0;
-	       reg_parity   <= 0;
-           shift_reg    <= 11'b00000000001;
-           reg_active   <= 0;
+	           reg_parity   <= 0;
+                   shift_reg    <= 11'b00000000001;
+                   reg_active   <= 0;
 		   if (transmit == 1)
-		     begin
-		      for (i = 0; i < 8; i = i + 1) //Create register with the whole package
-			   reg_parity <= reg_parity ^ TX_data_in[i];
+		    begin
+		     for (i = 0; i < 8; i = i + 1) //Create register with the whole package
+			  reg_parity <= reg_parity ^ TX_data_in[i];
 			  shift_reg   <= {1'b1, reg_parity, TX_data_in, 1'b0};
-		      state       <= TRANSMIT;
+		          state       <= TRANSMIT;
 			  reg_active  <= 1;
 			  clk_counter <= 1; //We want to start the transmission now
-			 end 
+		    end 
 		   else 
 		     state <= IDLE;
-		 end
+	        end
 		 
-		TRANSMIT: 
-		 begin
-		   if (clk_counter >= POSEDGES_FOR_BIT-1) //We wait for the right rate
+           TRANSMIT: 
 		    begin
-		     shift_reg <= shift_reg >> 1; //We need the LSB for the serial transmission
-			  if (shift_reg == 0)
-			   begin
-		        clk_counter <= 0;
-			    state       <= IDLE;
-			   end 
+		      if (clk_counter >= POSEDGES_FOR_BIT-1) //We wait for the right rate
+		       begin
+		        shift_reg <= shift_reg >> 1; //We need the LSB for the serial transmission
+		        if (shift_reg == 0)
+			 begin
+		          clk_counter <= 0;
+			  state       <= IDLE;
+		         end 
 			 clk_counter <= 0; 
 			end   
-		   else  
-             clk_counter <= clk_counter + 1; 
-         end
+		     else  
+                      clk_counter <= clk_counter + 1; 
+                    end
 		 
-		default: 
-		 state = IDLE;
-	  endcase 
-	 end
-	end
- endmodule
+           default: 
+		    state = IDLE;
+      endcase 
+     end
+   end
+endmodule
