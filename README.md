@@ -1,2 +1,2 @@
-# UART 8-bit transmiter and reciver
+# UART 8-bit transmitter and receiver
 
