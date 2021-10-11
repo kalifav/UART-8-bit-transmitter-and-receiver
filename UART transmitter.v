@@ -50,10 +50,10 @@ module UART_TX
 		    begin
 		     for (i = 0; i < 8; i = i + 1) //Create register with the whole package
 			  reg_parity <= reg_parity ^ TX_data_in[i];
-			  shift_reg   <= {1'b1, reg_parity, TX_data_in, 1'b0};
-		          state       <= TRANSMIT;
-			  reg_active  <= 1;
-			  clk_counter <= 1; //We want to start the transmission now
+	             shift_reg   <= {1'b1, reg_parity, TX_data_in, 1'b0};
+		     state       <= TRANSMIT;
+		     reg_active  <= 1;
+	             clk_counter <= 1; //We want to start the transmission now
 		    end 
 		   else 
 		     state <= IDLE;
