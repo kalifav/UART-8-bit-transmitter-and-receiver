@@ -46,10 +46,10 @@ module UART_TX
 	           reg_parity   <= 0;
                    shift_reg    <= 11'b00000000001;
                    reg_active   <= 0;
-		   if (transmit == 1)
+		   if (transmit == 1) //Create register with the whole package
 		    begin
-		     for (i = 0; i < 8; i = i + 1) //Create register with the whole package
-			  reg_parity <= reg_parity ^ TX_data_in[i];
+		     for (i = 0; i < 8; i = i + 1) 
+	               reg_parity <= reg_parity ^ TX_data_in[i]; //Calculate the even parity bit
 	             shift_reg   <= {1'b1, reg_parity, TX_data_in, 1'b0};
 		     state       <= TRANSMIT;
 		     reg_active  <= 1;
