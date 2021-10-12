@@ -1,7 +1,7 @@
 # UART 8-bit transmitter and receiver
 **This is an implementation of an 8-bit UART communucation protocol - Transmitter and Receiver in Verilog HDL (RTL design).**
 
-UART (Universal Asynchronous Transmitter Receiver), is an asynchronous and maybe the most common protocols used for full-duplex serial communication.
+UART (Universal Asynchronous Transmitter Receiver), is an asynchronous and maybe the most common protocol used for full-duplex serial communication.
 It is a cheap solution that requires a single wire for transmitting the data and another wire for receiving.
 This UART communication design includes a start bit ‘0’, 8-bit of data, even parity bit and a stop bit.
 The transmitter sends a single bit at a time, the receiver sample the bits one after the another when the bits are stable and finally send the data in parallel.
