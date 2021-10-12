@@ -18,7 +18,7 @@ module UART_tb;
  initial 
    begin
        clk      <= 0;
-	   reset    <= 0;
+       reset    <= 0;
        transmit <= 0;
    #10 transmit <= 1;
    end 
@@ -40,11 +40,11 @@ module UART_tb;
    forever
     begin
      @(reset_trigger);
-	 repeat(10)
+     repeat(10)
       @(negedge clk);
-	 reset <= 1;
-	 #10
-	 reset <= 0;
+     reset <= 1;
+     #10;
+     reset <= 0;
     end	 
   end	
    
