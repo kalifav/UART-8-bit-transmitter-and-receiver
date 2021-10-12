@@ -8,6 +8,6 @@ The transmitter sends a single bit at a time, the receiver sample the bits one a
 
 The baud rate (frequency of UART) is different from one device to another, likewise the clock-rate of each device, so in the code they are adjustable (the defaults are baud rate of 9600bps and clock rate of 50MHz).
 
-Finally, there is a test bench code, there the transmitter and the receiver where tested together. 
+Finally, there is a test bench code, there the transmitter and the receiver where tested together (the "UART_TOP" is the DUT). 
 
 
