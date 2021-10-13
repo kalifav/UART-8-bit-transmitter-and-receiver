@@ -14,10 +14,10 @@ module UART_TOP
  wire RX_serial_in;
  //Routing both receiver and transmitter toghether
  UART_TX   Transmitter (.clk(clk), .reset(reset), .TX_data_in(data_in), .transmit(transmit),
-                      .TX_active(TX_active), .TX_serial_out_bit(RX_serial_in));
+                        .TX_active(TX_active), .TX_serial_out_bit(RX_serial_in));
 					  
- UART_RX   Receiver	 (.clk(clk), .reset(reset), .serial_in(RX_serial_in), .parity_error(error),
-                      .valid(valid), .RX_Byte(data_out)); 
+ UART_RX   Receiver    (.clk(clk), .reset(reset), .serial_in(RX_serial_in), .parity_error(error),
+                        .valid(valid), .RX_Byte(data_out)); 
 					  
 endmodule					  
  
