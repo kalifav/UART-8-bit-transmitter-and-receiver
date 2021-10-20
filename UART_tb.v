@@ -25,7 +25,7 @@ module UART_tb;
    
  initial 
    begin
-    $display("  \t\ttime,\treset,\tdata_out,\tvalid,\tTX_active"); 
+    $display("\t\ttime,\treset,\tdata_out,\tvalid,\tTX_active"); 
     $monitor("%t,   \t%b,   \t%b,   \t%b,    \t%d",$time, reset, data_out, valid, TX_active);
    end 
 			   
