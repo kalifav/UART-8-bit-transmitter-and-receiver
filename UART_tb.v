@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+//TB for the UART_TOP model
 
 module UART_tb;
   
