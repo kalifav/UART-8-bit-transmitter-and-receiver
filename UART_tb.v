@@ -69,7 +69,3 @@ module UART_tb;
   end 
   
 endmodule
-   
-   
- 
-  
