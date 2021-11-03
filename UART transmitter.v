@@ -1,6 +1,6 @@
 module UART_TX
 #(parameter BR = 9600, 
-            CLK_RATE = 50e6) //The clock-rate and Bound-rate (frequency of UART) 
+            CLK_RATE = 50e6) //The clock-rate and Boud-rate (frequency of UART) 
 (
  input        clk, reset, 
  input [7:0]  TX_data_in, //Data input byte
