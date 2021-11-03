@@ -1,6 +1,6 @@
 module UART_RX
 #(parameter BR = 9600, 
-            CLK_RATE = 50e6) //The clock-rate and Bound-rate (frequency of UART) 
+            CLK_RATE = 50e6) //The clock-rate and Boud-rate (frequency of UART) 
 (
  input        clk, reset, 
  input        serial_in, //Serial input bit
